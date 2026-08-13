@@ -1,5 +1,13 @@
 # Unreleased
 
+## 0.1.2 - 2026-08-13
+
+Maintenance release following the repository reset and publication cleanup.
+
+- Replaced environment-specific examples with sanitized test fixtures.
+- Added cross-platform CI validation for Linux and Windows.
+- Restricted npm publishing to `v*` version tags.
+
 ## 0.1.1 - 2026-08-13
 
 First public release of the read-only `@eliware/ipfix` command-line client.

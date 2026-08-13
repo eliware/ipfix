@@ -1,6 +1,6 @@
 {
     "name": "@eliware/ipfix",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Read-only command-line client for the ipfixd API.",
     "author": "Eli Sterling <eli@eliware.org>",
     "license": "MIT",
