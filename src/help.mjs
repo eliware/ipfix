@@ -29,9 +29,10 @@ Core commands:
 Global flags:
   --help, -h       Show help
   --version, -v    Show version
-  --json           Emit JSON output
-  --jq <query>     Select fields from JSON output
-  --template <t>   Render a JSON template
+  --json, -j       Emit JSON output
+  --jq, -q <query> Select fields from JSON output
+  --template, -t <t>
+                   Render a JSON template
 
 Run ipfix <command> --help for command-specific help.`);
 }

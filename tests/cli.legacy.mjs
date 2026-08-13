@@ -3,10 +3,12 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { run } from "../src/cli.mjs";
+import { parseArgs } from "../src/args.mjs";
 import { parseSseChunk } from "../src/cli.mjs";
 import { requestJson } from "../src/request.mjs";
 import { normalizeUrl, writeConfig, activeUrl, configPath } from "../src/config.mjs";
 import { selectJson, renderTemplate } from "../src/output.mjs";
+import { VERSION } from "../src/version.mjs";
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "ipfix-cli-"));
 assert.equal(normalizeUrl("https://example.test/"), "https://example.test");
@@ -18,6 +20,7 @@ assert.equal(configPath(tmp).endsWith(path.join(".ipfix", "config.json")), true)
 assert.equal(selectJson({ result: { name: "ok" } }, ".result.name"), "ok");
 assert.equal(renderTemplate({ name: "ok" }, "{{name}}"), "ok");
 assert.deepEqual(parseSseChunk("event: summary\ndata: {\"ok\":true}\n"), [{ ok: true }]);
+assert.deepEqual(parseArgs(["-j", "-q", ".totals", "-t", "{{name}}"]), { args: [], opts: { json: true, jq: ".totals", template: "{{name}}" } });
 const slowFetch = (_url, { signal }) => new Promise((resolve, reject) => {
   signal.addEventListener("abort", () => reject(Object.assign(new Error("aborted"), { name: "AbortError" })));
 });
@@ -26,6 +29,8 @@ const badFetch = async () => ({ ok: false, status: 503, async text() { return JS
 await assert.rejects(() => requestJson("https://bad.test", { fetchImpl: badFetch }), error => error.status === 503 && error.body.error === "down");
 
 const logs = []; const errors = []; const urls = [];
+await run({ argv: ["-v"], printer: { log: value => logs.push(value) } });
+assert.equal(logs.at(-1), VERSION);
 const fetchImpl = async (url) => {
   urls.push(url);
   return {
