@@ -1,0 +1,45 @@
+{
+    "name": "@eliware/ipfix",
+    "version": "0.1.1",
+    "description": "Read-only command-line client for the ipfixd API.",
+    "author": "Eli Sterling <eli@eliware.org>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eliware/ipfix.git"
+    },
+    "homepage": "https://github.com/eliware/ipfix",
+    "bugs": {
+        "url": "https://github.com/eliware/ipfix/issues"
+    },
+    "keywords": [
+        "ipfix",
+        "network",
+        "flows",
+        "observability",
+        "cli",
+        "diagnostics"
+    ],
+    "type": "module",
+    "bin": {
+        "ipfix": "bin/ipfix.mjs"
+    },
+    "files": [
+        "bin",
+        "src",
+        "completions",
+        "docs/cli.md",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "ipfix": "node bin/ipfix.mjs",
+        "lint": "npx oxlint .",
+        "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js && node tests/cli-integration.integration.mjs",
+        "pack": "npm pack --dry-run"
+    },
+    "devDependencies": {
+        "jest": "^30.4.2",
+        "oxlint": "^1.78.0"
+    }
+}

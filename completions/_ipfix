@@ -1,0 +1,2 @@
+#compdef ipfix
+_arguments '1:command:(init config health ready summary views flows quality alerts inventory enrich export metrics performance benchmarks events api)' '*:flag:(--help --version --json --jq --template)'
