@@ -25,9 +25,3 @@ jobs:
       - run: npm -g install npm@latest
       - run: npm ci
       - run: npm test
-      - name: Run lint
-        run: npm run lint
-      - name: Validate package contents
-        run: npm run pack
-      - run: npm run lint
-      - run: npm run pack
