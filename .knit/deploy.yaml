@@ -9,3 +9,10 @@ on:
           - git pull --ff-only origin main
           - npm ci
           - npm test
+      - target: nas
+        cwd: /eliware/ipfix
+        timeoutMs: 300000
+        commands:
+          - git pull --ff-only origin main
+          - npm ci
+          - npm test
